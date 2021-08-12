@@ -51,4 +51,4 @@ For the tutorial session, the participants are expected to bring their own compu
 - [OpenIGTLink Official Page](http://openigtlink.org/)
 - [3D Slicer Training](https://www.slicer.org/wiki/Documentation/4.10/Training)
 - [3D Slicer scripting and module development tutorial provided by Queen's University](https://github.com/PerkLab/PerkLabBootcamp/blob/master/Doc/day3_2_SlicerProgramming.pptx?raw=true)
-- [Issues with Qt Designer on macOS]https://discourse.slicer.org/t/edit-ui-raies-designer-cannot-be-opened-because-of-a-problem/13176
+- [Issues with Qt Designer on macOS (Discussion in Discourse)](https://discourse.slicer.org/t/edit-ui-raies-designer-cannot-be-opened-because-of-a-problem/13176)
