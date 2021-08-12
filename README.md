@@ -28,10 +28,10 @@ Japanese (with English Slides, Q/A in both Japanese and English)
 
 ## Timetable
 
--10:00am-10:20am  Introduction 
--10:20am-10:50am  Hands-On Tutorial 1: 3D Slicer basics
--10:50am-11:00am  (Break)
--11:00am-12:00pm  Hands-On Tutorial 2: Building a 3D Slicer module for CAS applications
+- 10:00am-10:20am  Introduction 
+- 10:20am-10:50am  Hands-On Tutorial 1: 3D Slicer basics
+- 10:50am-11:00am  (Break)
+- 11:00am-12:00pm  Hands-On Tutorial 2: Building a 3D Slicer module for CAS applications
 
 ## Prerequisite (TBD)
 
