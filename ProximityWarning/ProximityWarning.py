@@ -140,12 +140,8 @@ class ProximityWarningWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
     self.ui.inputSelector.connect("currentNodeChanged(vtkMRMLNode*)", self.setInputNode)
     self.ui.distanceSliderWidget.connect("valueChanged(double)", self.onDistanceUpdated)
     
-    self.ui.outputSelector.connect("currentNodeChanged(vtkMRMLNode*)", self.updateParameterNodeFromGUI)
     self.ui.distanceSliderWidget.connect("valueChanged(double)", self.updateParameterNodeFromGUI)
     self.ui.invertOutputCheckBox.connect("toggled(bool)", self.updateParameterNodeFromGUI)
-
-    # Buttons
-    self.ui.applyButton.connect('clicked(bool)', self.onApplyButton)
 
     # Make sure parameter node is initialized (needed for module reload)
     self.initializeParameterNode()
@@ -235,7 +231,6 @@ class ProximityWarningWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
 
     # Update node selectors and sliders
     self.ui.inputSelector.setCurrentNode(self._parameterNode.GetNodeReference("InputVolume"))
-    self.ui.outputSelector.setCurrentNode(self._parameterNode.GetNodeReference("OutputVolume"))
     self.ui.distanceSliderWidget.value = float(self._parameterNode.GetParameter("Threshold"))
     self.ui.invertOutputCheckBox.checked = (self._parameterNode.GetParameter("Invert") == "true")
 
@@ -262,7 +257,6 @@ class ProximityWarningWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
     wasModified = self._parameterNode.StartModify()  # Modify all properties in a single batch
 
     self._parameterNode.SetNodeReferenceID("InputVolume", self.ui.inputSelector.currentNodeID)
-    self._parameterNode.SetNodeReferenceID("OutputVolume", self.ui.outputSelector.currentNodeID)
     self._parameterNode.SetParameter("Threshold", str(self.ui.distanceSliderWidget.value))
     self._parameterNode.SetParameter("Invert", "true" if self.ui.invertOutputCheckBox.checked else "false")
 
@@ -298,23 +292,6 @@ class ProximityWarningWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
     distance = self.ui.distanceSliderWidget.value
     self.logic.proximityCheck(inputNode, fidNode, distance)
   
-  
-  def onApplyButton(self):
-    """
-    Run processing when user clicks "Apply" button.
-    """
-    try:
-
-      # Compute output
-      self.logic.process(self.ui.inputSelector.currentNode(), self.ui.outputSelector.currentNode(),
-        self.ui.distanceSliderWidget.value, self.ui.invertOutputCheckBox.checked)
-
-
-    except Exception as e:
-      slicer.util.errorDisplay("Failed to compute results: "+str(e))
-      import traceback
-      traceback.print_exc()
-
 
 #
 # ProximityWarningLogic
