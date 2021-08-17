@@ -21,7 +21,7 @@ Topics/Keywords:
 August 18, 2021, 10am-12pm JST (Online; Invetation will be sent separately)
 
 ### Language
-Japanese (with English Slides, Q/A in both Japanese and English)
+English (Q/A in both Japanese and English)
 
 ### Lecturer
 [Junichi Tokuda, Ph.D.](https://scholar.harvard.edu/tokuda/home) (Associate Professor of Radiology, Brigham and Women’s Hospital / Harvard Medical School)
@@ -56,10 +56,27 @@ Computer Setup (for hands-on tutorial):
 
 - Introduction Slides (to be uploaded)
 - [Tool Tracking Tutorial](Instructions/ToolTracking.md)
+- [SlicerIGT Introductory Tutorial](Instructions/SlicerIGTIntroduction.md)
 
 ## References
-- [3D Slicer Official Page](https://slicer.org/)
-- [OpenIGTLink Official Page](http://openigtlink.org/)
+- [3D Slicer](https://slicer.org/)
+- [OpenIGTLink](http://openigtlink.org/)
+- [SlicerIGT](http://www.slicerigt.org/)
 - [3D Slicer Training](https://www.slicer.org/wiki/Documentation/4.10/Training)
 - [3D Slicer scripting and module development tutorial provided by Queen's University](https://github.com/PerkLab/PerkLabBootcamp/blob/master/Doc/day3_2_SlicerProgramming.pptx?raw=true)
 - [Issues with Qt Designer on macOS (Discussion in Discourse)](https://discourse.slicer.org/t/edit-ui-raies-designer-cannot-be-opened-because-of-a-problem/13176)
+
+
+### Acknowledgements
+
+This seminar is hosted by [BMPE Lab., University of Tokyo](http://www.bmpe.t.u-tokyo.ac.jp/en/member.html) and [National Center for Image-Guided Therapy, Brigham and Women's Hospital](https://ncigt.org/), and supported in part by The U.S. National Institutes of Health (R01EB020667, R01CA235134, P41EB028741, and P41EB015902). 
+
+[3D Slicer](https://www.slicer.org/) is developed by the 3D Slicer community. [SlicerIGT](http://www.slicerigt.org/) and [PLUS Toolkit](https://plustoolkit.github.io/) are developed at [Perk Lab., Queen's University, Canada](http://perk.cs.queensu.ca/). OpenIGTLink is developed by the OpenIGTLink community. Lists of contributors for those software packages can be found at:
+
+- [3D Slicer - Acknowledgements](https://slicer.readthedocs.io/en/latest/user_guide/about.html#acknowledgments)
+- [SlicerIGT - Contributors](http://www.slicerigt.org/wp/contributors/)
+- [PLUS Toolkit - About](https://plustoolkit.github.io/about)
+
+
+
+
