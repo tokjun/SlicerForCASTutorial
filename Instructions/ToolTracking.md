@@ -1,6 +1,7 @@
 # Tool Tracking Tutorial
 
 ## Introduction
+
 [OpenIGTLink](https://openigtlink.org/) is an open-source network communication protocol for image-guided therapy (IGT) applications. It is used as a default network interface for 3D Slicer to exchange data with external software, such as device tracking systems and imaging scanners. The OpenIGTLink interface is provided as an extension package named "SlicerOpenIGTLink."
 
 This tutorial demonstrates how to import tracking data from external software through OpenIGTLink.

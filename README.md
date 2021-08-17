@@ -57,6 +57,8 @@ Computer Setup (for hands-on tutorial):
 - Introduction Slides (to be uploaded)
 - [Tool Tracking Tutorial](Instructions/ToolTracking.md)
 - [SlicerIGT Introductory Tutorial](Instructions/SlicerIGTIntroduction.md)
+- [Custom Module Tutorial](Instructions/CustomModule.md)
+
 
 ## References
 - [3D Slicer](https://slicer.org/)
@@ -76,6 +78,7 @@ This seminar is hosted by [BMPE Lab., University of Tokyo](http://www.bmpe.t.u-t
 - [3D Slicer - Acknowledgements](https://slicer.readthedocs.io/en/latest/user_guide/about.html#acknowledgments)
 - [SlicerIGT - Contributors](http://www.slicerigt.org/wp/contributors/)
 - [PLUS Toolkit - About](https://plustoolkit.github.io/about)
+- [OpenIGTLink - About](http://openigtlink.org/about)
 
 
 
