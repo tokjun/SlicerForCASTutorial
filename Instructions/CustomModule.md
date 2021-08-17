@@ -103,10 +103,18 @@ In this tutorial, we edit ProximityWarning/Resources/UI/ProximityWarning.ui usin
  - Go back to the "Widget Box" window and find "qMRMLNodeComboBox" under the "Slicer [MRML Widgets]" section.
  - Drug the combo box from "Widget Box" to the editor window, and drop it on the right side of the "Fiducial:" label.
  - Click the combo box to make sure that the box is selected.
+ - In the "Property Editor", find "Enabled" and check the box to enable the widget.
  - In the "Property Editor", find "objectName" and change it to "fiducialSelector". Press Enter after editing the name.
  - In the "Property Editor", find "nodeTypes" and click the value field. It will show a "Change String List" button.
  - Click the "Change String List" button. A dialog box should show up on the screen.
  - Click "+New". Change the new line on the string list to "vtkMRMLMarkupsFiducialNode".
+ - In the "Signal/Slot Editor", click "+" and select:
+   - Sender: ProximityWarning
+   - Signal: mrmlSceneChanged(vtkMRMLScene*)
+   - Receiver: fiducialSelector
+   - Slot: setMRMLScene(vtkMRMLScene*)
+
+
 - (Optional) You may delete the rest of the widgets (The "Outputs" and "Advanced" frames).
 - Save the GUI from the menu "File" -> "Save".
 
@@ -287,12 +295,64 @@ Then, we define `proximityCheck()` under the `ProximityWarningLogic` class as fo
       dispNode.EndModify(prevState)
 ~~~~  
 
+Since we renamed some of the existing widgets in the skeleton code from Qt Designer, we need to remove them from the Python code as well. Remove every line that includes `imageThresholdSliderWidget`.
+
+
+
 Finally, we connect the slots with the GUI widgets. Add the following lines at the end of the `setup()` function in the `ProximityWarningWidget()` class:
 
 ~~~~
     self.ui.inputSelector.connect("currentNodeChanged(vtkMRMLNode*)", self.setInputNode)
     self.ui.distanceSliderWidget.connect("valueChanged(double)", self.onDistanceUpdated)
 ~~~~
+
+
+### Step 4: Test with Tracking Server.
+
+The final step is to test the new custom module with an external tracking server. In this tutorial, we use the same tracking server used in the [previous tutorial](ToolTracking.md). Please refer to [Tool Tracking Tutorial](ToolTracking.md) for setting up and starting the tracking server. The following steps assume that the server is already running on the same machine.
+
+
+First, we download an MR image as follows:
+
+1. From the "Modules" menu, choose "Welcome to Slicer."
+2. Click the "Download Sample Data" button.
+3. Click "MRHead" (the first image shown under the "BuiltIn" section). The 3D Slicer starts downloading the image. The progress will appear in the status bar at the bottom of the 3D Slicer window.
+4. Once the image is downloaded, it should appear in the 2D viewers.
+
+Then we define a target point (fiducial) somewhere in the brain:
+
+1. Click “Create and place” button on the toolbar to activate place mode.
+2. Click the MR image on the 2D viewer, where you want to place a target.
+3. A small red dot is placed on the image.
+
+To connect 3D Slicer to the dummy tracking server:
+
+1. Open 3D Slicer.
+2. Click the "Modules" pull-down menu, and choose "IGT"->"OpenIGTLinkIF".
+3. Under the "Connectors" section, click "+" to create a connector.
+4. You don't need to change the properties (Type=Client, Hostname='localhost', Port='18944') unless you are running the server on a different machine, or have changed the port number of the server.
+5. Click the "Active" check box next for "Status."
+
+If 3D Slicer is successfully connected to the dummy tracking server, the "Status" column in the list should become "ON." To visualize the tracking data in the 3D viewer:
+
+1. Go to "I/O Configuration" section in the OpenIGTLinkIF extension.
+2. Expand "IGTLConnector" by clicking the triangle on the left. It should show "IN" and "OUT" under "IGTLConnector."
+3. If the tracking data are being received from the server, "IN" can be further expanded.
+4. Under "IN," you could find "Tracking" with an "eye" icon.
+5. Click the "eye" icon. A model of the tracked tool should appear and move randomly in the 3D viewer.
+
+Now, we are ready to try our ProximityWarning module.
+
+1. Open the ProximityWarning from the Modules menu ("Examples" -> "ProximityWarning").
+2. Under the "Inputs", click the "Input Tracker" menu and choose "Tracking".
+3. Under the "Inputs", click the "Fiducial" menu and choose "F".
+4. If the tracking data are incoming, or if you move the distance slider, a blue sphere appears on the 3D viewer. You can change the radius of the sphere by moving the slider.
+5. When the needle tip comes into the sphere, the color of the sphere changes from blue to red.
+
+
+
+
+
 
 
 
