@@ -54,7 +54,7 @@ Computer Setup (for hands-on tutorial):
 
 ## Seminar Materials
 
-- Introduction Slides (to be uploaded)
+- [Introduction Slides](Slicer-CAS-UTokyo.pdf)
 - [Tool Tracking Tutorial](Instructions/ToolTracking.md)
 - [SlicerIGT Introductory Tutorial](Instructions/SlicerIGTIntroduction.md)
 - [Custom Module Tutorial](Instructions/CustomModule.md)
