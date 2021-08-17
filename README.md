@@ -55,7 +55,7 @@ Computer Setup (for hands-on tutorial):
 ## Seminar Materials
 
 - Introduction Slides (to be uploaded)
-
+- [Tool Tracking Tutorial](Instructions/ToolTracking.md)
 
 ## References
 - [3D Slicer Official Page](https://slicer.org/)
