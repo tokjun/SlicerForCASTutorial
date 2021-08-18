@@ -2,11 +2,11 @@
 
 ## Introduction
 
-3D Slicer's plug-in mechanism allow application developers to add a new features and customize 3D Slicer for their specific clinical applications. Those new features are called "Modules." Modules may be packaged and provided as "Extensions," which can be distributed to users through [Extension Manager](https://slicer.readthedocs.io/en/latest/user_guide/extensions_manager.html).
+3D Slicer's plug-in mechanism allows application developers to add new features and customize 3D Slicer for their specific clinical applications. Those new features are called "Modules." Modules may be packaged and provided as "Extensions," which can be distributed to users through [Extension Manager](https://slicer.readthedocs.io/en/latest/user_guide/extensions_manager.html).
 
 There are three mechanisms that are used to develop modules:
 - **Command-line interface (CLI) module:** A command-line program that can be called from 3D Slicer. 3D Slicer parses a configuration file bundled with a CLI module, and automatically generates a GUI interface for the user to give pass parameters to the CLI module. Many image processing modules are implemented as CLI modules.
-- **Loadable module:** A Plug-in module written in C++, the same language used for the foundation of 3D Slicer (including [VTK](https://vtk.org/) and [ITK](https://itk.org/). The loadable module can access most of the native C++ API in 3D Slicer, it offers the highest flexibility and performance to the developers among the three mechanisms. However, it required more effort than the other approaches as the development of a loadable module geenrally involves more codings and compilation.
+- **Loadable module:** A Plug-in module written in C++, the same language used for the foundation of 3D Slicer (including [VTK](https://vtk.org/) and [ITK](https://itk.org/). The loadable module can access most of the native C++ API in 3D Slicer, it offers the highest flexibility and performance to the developers among the three mechanisms. However, it required more effort than the other approaches as the development of a loadable module generally involves more codings and compilation.
 - **Scripted module:** A plug-in module written in Python. Scripted module has become very popular among the Slicer developers in recent years, because of its simplicity, flexibility, and portability.
 
 In this tutorial, we will develop a Scripted module.
@@ -14,7 +14,7 @@ In this tutorial, we will develop a Scripted module.
 
 ## Notes on Python Interface in 3D Slicer..
 
-Scripted modules use Python interface in 3D Slicer. Users can directory interact with the Python interface through "Python Interactor," which is a convinient way to test part of their codes interactively. [Script Repository](https://slicer.readthedocs.io/en/latest/developer_guide/script_repository.html) provides various code snippets to demonstrate how to call Slicer API through the Python interface.
+Scripted modules use Python interface in 3D Slicer. Users can directory interact with the Python interface through "Python Interactor," which is a convenient way to test part of their codes interactively. [Script Repository](https://slicer.readthedocs.io/en/latest/developer_guide/script_repository.html) provides various code snippets to demonstrate how to call Slicer API through the Python interface.
 
 
 ## Goal of Our Custom Module - "Proximity Warning"
@@ -22,7 +22,7 @@ Scripted modules use Python interface in 3D Slicer. Users can directory interact
 As an example CAS application, we will build a "Proximity Warning" module. The module monitors incoming tool tracking data, and warns if the tool tip comes too close to a given target point.
 
 The user will select the following parameters:
-- **Linear transform node:** a node to store the tracking data are imported from external tracking system.
+- **Linear transform node:** a node to store the tracking data are imported from an external tracking system.
 - **Markups fiducial node:** a node that defines a target point.
 - **Distance:** A threshold distance that defines the "proximity" from the target point.
 
@@ -40,11 +40,11 @@ First, we create an extension.
 3. A dialog box should appear on the screen. Type in the following information:
   1. Name: "CASTutorial"
   2. Type: "default"
-  3. Destination: Your working directory (folder) (will be refered to as "the working directory" in the following steps)
+  3. Destination: Your working directory (folder) (will be referred to as "the working directory" in the following steps)
 4. Click "OK"
 5. Another dialog box should appear. You may edit the category, description, and contributor. Click "OK" to close.
 
-### Step 2: Create a "sekeleton" code for a module.
+### Step 2: Create a "skeleton" code for a module.
 
 Within the Extension created in Step 1, we add a new module.
 
@@ -127,7 +127,7 @@ In some environments (especially in macOS), 3D Slicer cannot launch Qt Designer 
 
 Next, we edit the main source code (ProximityWarning/ProximityWarning.py). If you want to skip the following steps, download the source code from [the repository](https://github.com/tokjun/SlicerForCASTutorial/blob/main/ProximityWarning/ProximityWarning.py) and replace the skeleton with the downloaded file.
 
-First, import the numpy library in the code. Ad the following line after at the begining of the file:
+First, import the numpy library in the code. Ad the following line after at the beginning of the file:
 
 ~~~~
 import os
@@ -157,7 +157,7 @@ In the `ProximityWarningWidget` class, we will use two class-wide variables to k
     self.inputTag = False       # <---- Here!
 ~~~~
 
-In Qt, each GUI widget emits a "signal" when there is any updates (e.g., mouse click, button release, value change, etc). To capture the signal and define the behaviour of the program upon the emission of a signal, the developer must define a special call back function called "slot" and connect it with the GUI widget that emits the signal.
+In Qt, each GUI widget emits a "signal" when there is any updates (e.g., mouse click, button release, value change, etc). To capture the signal and define the behavior of the program upon the emission of a signal, the developer must define a special call back function called "slot" and connect it with the GUI widget that emits the signal.
 
 Our module must react to two GUI events:
 1. Change of the input node (the linear transform node that receives the tracking data)
@@ -182,7 +182,7 @@ To handle the change of the input node, we define the following function in the 
       self.inputNodeID = None
 ~~~~
 
-This function takes a new linear transform node from the inputSelector widget, and register an 'observer' function, which observes the node and process the data when the node is updated. This is achieved by calling `AddObserver()`. The actual observer function (`self.onInputModified()`) will be defined later.
+This function takes a new linear transform node from the inputSelector widget, and register an 'observer' function, which observes the node and processes the data when the node is updated. This is achieved by calling `AddObserver()`. The actual observer function (`self.onInputModified()`) will be defined later.
 
 The change of the distance value is handled by `onDistanceUpdated()` function. We insert the following definition under the `ProximityWarningWidget` class:
 
@@ -321,7 +321,7 @@ First, we download an MR image as follows:
 
 Then we define a target point (fiducial) somewhere in the brain:
 
-1. Click “Create and place” button on the toolbar to activate place mode.
+1. Click the “Create and place” button on the toolbar to activate place mode.
 2. Click the MR image on the 2D viewer, where you want to place a target.
 3. A small red dot is placed on the image.
 
